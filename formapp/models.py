@@ -1,5 +1,7 @@
 from django.db import models
 
+from stdimage import StdImageField
+
 
 class Base(models.Model):
     create = models.DateField('Data de criação', auto_now_add=True)
@@ -12,6 +14,7 @@ class UserSystem(Base):
     surname = models.CharField('Sobrenome', max_length=255)
     email = models.EmailField('E-mail', max_length=100)
     password = models.CharField('Senha', max_length=255, editable=False)
+    photo = StdImageField('Foto', upload_to='images_users', variations={'thumb': (125,125)})
 
     class Meta:
         db_table = 'Usuários'
